@@ -6,11 +6,49 @@ public class App
 {
     public static void main( String[] args )
     {
-
-        System.out.println("Hello");
+        int[] prices = {2,4,1};
+        System.out.println(maxProfit(prices));
     }
 
-    public int romanToInt(String s) {
+// best time to buy and sell stocks
+public static int maxProfit(int[] prices) {
+    int profits [] = new int[prices.length];
+    int profit;
+    int bestBuyingPrice = 10000;
+
+    for (int i = 0; i < prices.length; i++){
+        if(prices[i] < bestBuyingPrice){
+            bestBuyingPrice = prices[i];
+        }
+        profit = prices[i] - bestBuyingPrice;
+        profits[i] = profit;
+    }
+    Arrays.sort(profits);
+    return profits[profits.length - 1];
+}
+
+
+
+
+    public static int[] twoSum(int[] nums, int target) {
+        // brute force
+        // for in nums
+        // take each nums[i]
+        // compare it to the rest of the array till you find the target
+
+        int [] result = new int[2];
+        for (int i = 0; i < nums.length; i++){
+            for(int j = i + 1; j < nums.length; j++){
+                if(nums[i]+nums[j] == target){
+                    result[0] = nums[i];
+                    result[1] = nums[j];
+                }
+            }
+
+        }
+        return result;
+    }
+    public static int romanToInt(String s) {
         Map<Character, Integer> RomanTONumberMap = new HashMap<>();
         RomanTONumberMap.put('I', 1);
         RomanTONumberMap.put('V', 5);
@@ -19,6 +57,7 @@ public class App
         RomanTONumberMap.put('C', 100);
         RomanTONumberMap.put('D', 500);
         RomanTONumberMap.put('M', 1000);
+
         int Number = 0;
         char[] Letters = s.toCharArray();
         for (int i = 0; i < Letters.length; i++) {
@@ -37,7 +76,8 @@ public class App
                 } else {
                     Number += RomanTONumberMap.get(current);
                 }
-            } else {
+            }
+            else {
                 Number += RomanTONumberMap.get(current);
             }
         }
