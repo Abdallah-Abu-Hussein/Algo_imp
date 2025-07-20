@@ -28,7 +28,18 @@ public static int maxProfit(int[] prices) {
 }
 
 
+    public int[] twoSum_MapVersion(int[] nums, int target) {
+        Map<Integer,Integer> numberParis = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            int complment = target - nums[i];
 
+            if(numberParis.containsKey(complment)){
+                return new int [] {numberParis.get(complment),i};
+            }
+            numberParis.put(nums[i],i);
+        }
+        return null;
+    }
 
     public static int[] twoSum(int[] nums, int target) {
         // brute force
